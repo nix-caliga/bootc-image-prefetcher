@@ -1,0 +1,35 @@
+name: update-pins
+
+on:
+    schedule:
+        - cron: "0 4 * * *"
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+jobs:
+    update:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: jlumbroso/free-disk-space@main
+            - uses: cachix/install-nix-action@v31
+              with:
+                  extra_nix_config: experimental-features = nix-command flakes
+            - run: |
+                  set -uo pipefail
+                  nix run ./updater#update || failed=1
+
+                  # commit whatever pins changed
+                  mkdir -p pins
+                  git add pins
+                  if ! git diff --cached --quiet; then
+                    git config user.name 'github-actions[bot]'
+                    git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+                    git commit -m 'chore: update bootc image pins'
+                    git push origin HEAD:${{ github.ref_name }}
+                  fi
+
+                  # mark failed if any image failed (but commit the rest)
+                  [ -z "${failed:-}" ] || exit 1
