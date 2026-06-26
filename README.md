@@ -1,5 +1,7 @@
 # bootc-image-prefetcher
 
+[![update-pins](https://github.com/nix-caliga/bootc-image-prefetcher/actions/workflows/update.yml/badge.svg)](https://github.com/nix-caliga/bootc-image-prefetcher/actions/workflows/update.yml)
+
 Nightly refreshed `dockerTools.pullImage` pins for bootc images.
 
 Edit /updater/images.nix to adjust which images/tags are pinned.
