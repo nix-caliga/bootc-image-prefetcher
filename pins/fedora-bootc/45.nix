@@ -1,7 +1,7 @@
 {
   imageName = "quay.io/fedora/fedora-bootc";
-  imageDigest = "sha256:7e6d2a54ab590c7a206a7947238d7b517ea2005b2c6c4fab191471aaa57fccd5";
-  hash = "sha256-fXe0n7mRVhXZE0+pRjIpWBE9zOkVAUF9FupBKVrYgAs=";
+  imageDigest = "sha256:80189d76b8cd4c6e5c86c2352eb6a1096f6571a4f43f86ecf3a794b152d94d59";
+  hash = "sha256-Am0UGkDby/KWUsTj+QMZ14LR8Lcs4e1iVlUGViSCTsU=";
   finalImageName = "quay.io/fedora/fedora-bootc";
   finalImageTag = "45";
 }

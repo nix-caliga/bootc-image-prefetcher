@@ -1,7 +1,7 @@
 {
   imageName = "quay.io/fedora-ostree-desktops/base-atomic";
-  imageDigest = "sha256:9737c3d529558308f86dc1149c3f26116eaffef632776086611abdbbbca72a90";
-  hash = "sha256-EfPETrVmwJ80pqcd6iBIxHeTX+vyFb7ITQotZx7Cc2c=";
+  imageDigest = "sha256:8ede12887eb562141f14c214e18fab124252a5ef7541db2b3d1481fb9329a041";
+  hash = "sha256-Rs3e+0Pzf95op2Nc04IMj5OK8uyyPMIf4IgLkPrq7rw=";
   finalImageName = "quay.io/fedora-ostree-desktops/base-atomic";
   finalImageTag = "44";
 }
