@@ -1,7 +1,7 @@
 {
   imageName = "quay.io/fedora-ostree-desktops/silverblue";
-  imageDigest = "sha256:c2589b7b8cacd8ce0b1dcae2ee52a96d223fe885fb0f1ba70cd706b668a6c43b";
-  hash = "sha256-l3shUkWMVeqkeLNIQ6c6nnEE1GVCUoWz7WqlvOdv244=";
+  imageDigest = "sha256:6c980b15977e7a2c348a071f6db213a9cd44faabbef67e7b3f262d983de969eb";
+  hash = "sha256-BTDinUWdXym5sR0NKkmIahGpQ5BgLYZLxc0bzE9CWRU=";
   finalImageName = "quay.io/fedora-ostree-desktops/silverblue";
   finalImageTag = "44";
 }
