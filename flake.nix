@@ -2,7 +2,7 @@
   description = "Nightly prefetched dockerTools.pullImage pins for bootc images";
 
   outputs =
-    { }:
+    { self, ... }:
     let
       images = import ./updater/images.nix;
       pinPath = name: tag: ./pins + "/${name}/${tag}.nix";

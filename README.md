@@ -31,7 +31,7 @@ Example: feed a pin to [nix-caliga](https://github.com/nix-caliga/nix-caliga) as
                 name = "ghcr.io/your/image";
                 tag = "your-tag";
                 # pick the image you want
-                fromImage = pkgs.dockerTools.pullImage bootc-image-prefetcher.pins.fedora-base-atomic."43";
+                fromImage = pkgs.dockerTools.pullImage bootc-image-prefetcher.pins.fedora-base-atomic."44";
               };
 
               caliga.os = "fedora";
