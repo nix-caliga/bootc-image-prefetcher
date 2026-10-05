@@ -1,7 +1,7 @@
 {
   imageName = "quay.io/fedora-ostree-desktops/kinoite";
-  imageDigest = "sha256:1064053e0796b2559d2a7fe3ff88d62a4d5428204ab836d30bd2a1ae4a96a291";
-  hash = "sha256-qyM4wsj2Q7G08laFTkAQLEk/tBqeE6x3Dzsf71dr3Nk=";
+  imageDigest = "sha256:c6d16ad9e11adbbf7f54d3444c6ad8789dc3731769e398ee8bf1d04b40fa79d9";
+  hash = "sha256-JC6gSIB3yHPu5a+PU218yjhdJ8MPgqV7xWtXq8KcJvE=";
   finalImageName = "quay.io/fedora-ostree-desktops/kinoite";
   finalImageTag = "44";
 }
