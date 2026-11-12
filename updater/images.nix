@@ -5,6 +5,7 @@
       "44"
       "45"
     ];
+    mirror = [ "44" ];
   };
   fedora-base-atomic = {
     imageName = "quay.io/fedora-ostree-desktops/base-atomic";
