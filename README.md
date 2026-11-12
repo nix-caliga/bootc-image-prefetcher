@@ -4,7 +4,7 @@
 
 Nightly refreshed `dockerTools.pullImage` pins for bootc images.
 
-Images to prefetch are listed in `updater/images.nix`. Tags in `mirror` are also copied to `ghcr.io/<owner>/<repo>/<name>:<tag>`.
+Images to prefetch are listed in `updater/images.nix`. Tags in `mirror` are also copied to `ghcr.io/<owner>/<repo>/<name>:<tag>` and pinned as `pins.<name>.mirror.<tag>`.
 ```nix
 fedora-bootc = {
   imageName = "quay.io/fedora/fedora-bootc";
