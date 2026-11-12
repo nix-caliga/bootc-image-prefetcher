@@ -17,18 +17,22 @@
           map (tag: {
             inherit name tag;
             inherit (img) imageName;
-          }) img.tags
+            mirror = builtins.elem tag (img.mirror or [ ]);
+          }) (lib.unique (img.tags ++ img.mirror or [ ]))
         ) imageSpecs
       );
 
       prefetchRun = lib.concatMapStringsSep "\n" (
         img:
         "prefetch ${
-          lib.escapeShellArgs [
-            img.name
-            img.tag
-            img.imageName
-          ]
+          lib.escapeShellArgs (
+            [
+              img.name
+              img.tag
+              img.imageName
+            ]
+            ++ lib.optional img.mirror "mirror"
+          )
         }"
       ) imagesToPrefetch;
 
@@ -39,6 +43,7 @@
         name = "updater";
         runtimeInputs = [
           pkgs.nix-prefetch-docker
+          pkgs.skopeo
           pkgs.nix
           pkgs.coreutils
         ];
@@ -47,7 +52,7 @@
           failed=()
 
           prefetch() {
-            local name=$1 tag=$2 image=$3 pin
+            local name=$1 tag=$2 image=$3 mirror=''${4:-} pin digest
             echo "prefetching $name:$tag"
             if pin=$(nix-prefetch-docker --quiet --arch amd64 --os linux \
                        --image-name "$image" --image-tag "$tag"); then
@@ -55,6 +60,12 @@
               printf '%s\n' "$pin" > "pins/$name/$tag.nix"
             else
               failed+=("$name:$tag")
+            fi
+            # for mirroring images
+            if [ -n "$mirror" ]; then
+              { digest=$(nix eval --raw --file "pins/$name/$tag.nix" imageDigest) &&
+                skopeo copy --preserve-digests --retry-times 3 \
+                  "docker://$image@$digest" "docker://ghcr.io/''${GITHUB_REPOSITORY,,}/$name:$tag"; } || failed+=("mirror $name:$tag")
             fi
             if [ -n "''${CI:-}" ]; then nix-collect-garbage -d >/dev/null 2>&1 || true; fi
           }

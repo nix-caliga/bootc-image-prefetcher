@@ -4,7 +4,14 @@
 
 Nightly refreshed `dockerTools.pullImage` pins for bootc images.
 
-Edit /updater/images.nix to adjust which images/tags are pinned.
+Images to prefetch are listed in `updater/images.nix`. Tags in `mirror` are also copied to `ghcr.io/<owner>/<repo>/<name>:<tag>`.
+```nix
+fedora-bootc = {
+  imageName = "quay.io/fedora/fedora-bootc";
+  tags = [ "44" "45" ];
+  mirror = [ "44" ]; # optional
+};
+```
 
 Example: feed a pin to [nix-caliga](https://github.com/nix-caliga/nix-caliga) as its base image.
 ```nix

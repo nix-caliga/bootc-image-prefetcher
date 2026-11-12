@@ -19,7 +19,7 @@
       # pins.<name>.<tag> = the raw nix-prefetch-docker attrset for that image.
       pins = builtins.mapAttrs (
         name: img:
-        genAttrs (builtins.filter (tag: builtins.pathExists (pinPath name tag)) img.tags) (
+        genAttrs (builtins.filter (tag: builtins.pathExists (pinPath name tag)) (img.tags ++ img.mirror or [ ])) (
           tag: import (pinPath name tag)
         )
       ) images;

@@ -7,6 +7,7 @@ on:
 
 permissions:
     contents: write
+    packages: write
 
 jobs:
     update:
@@ -19,6 +20,7 @@ jobs:
                   extra_nix_config: experimental-features = nix-command flakes
             - run: |
                   set -uo pipefail
+                  echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
                   nix run ./updater#update || failed=1
 
                   # commit whatever pins changed
