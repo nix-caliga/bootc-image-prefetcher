@@ -12,21 +12,28 @@
       "44"
     ];
   };
-  fedora-kinoite = {
-    imageName = "quay.io/fedora-ostree-desktops/kinoite";
-    tags = [
-      "44"
-    ];
-  };
   fedora-silverblue = {
     imageName = "quay.io/fedora-ostree-desktops/silverblue";
     tags = [
       "44"
     ];
   };
+  almalinux = {
+    imageName = "quay.io/almalinuxorg/almalinux-bootc";
+    tags = [
+      "10"
+    ];
+  };
 
   # these take so long to fetch
 
+
+  # fedora-kinoite = {
+  #   imageName = "quay.io/fedora-ostree-desktops/kinoite";
+  #   tags = [
+  #     "44"
+  #   ];
+  # };
   # ublue-aurora = {
   #   imageName = "ghcr.io/ublue-os/aurora";
   #   tags = [
