@@ -35,3 +35,22 @@ jobs:
 
                   # mark failed if any image failed (but commit the rest)
                   [ -z "${failed:-}" ] || exit 1
+
+            - name: prune untagged images older than 14 days
+              if: ${{ !cancelled() }}
+              env:
+                  GH_TOKEN: ${{ github.token }}
+              run: |
+                  set -uo pipefail
+                  base=$(gh api "users/$GITHUB_REPOSITORY_OWNER" --jq 'if .type == "Organization" then "orgs" else "users" end')/$GITHUB_REPOSITORY_OWNER
+                  gh api --paginate "$base/packages?package_type=container" \
+                    --jq ".[] | select(.repository.full_name == \"$GITHUB_REPOSITORY\") | .name | @uri" |
+                  while read -r pkg; do
+                    # skip currently tagged images
+                    gh api --paginate "$base/packages/container/$pkg/versions" \
+                      --jq '.[] | select(.metadata.container.tags == [] and (.created_at | fromdate) < now - 14*86400) | .id' |
+                    while read -r id; do
+                      echo "deleting $pkg version $id"
+                      gh api -X DELETE "$base/packages/container/$pkg/versions/$id" || echo "::warning::failed to delete $pkg $id"
+                    done
+                  done
