@@ -14,8 +14,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-            - uses: jlumbroso/free-disk-space@main
-            - uses: cachix/install-nix-action@v31
+            - uses: jlumbroso/free-disk-space@cf1e78c50ca91e757bab3edc229027eebfc07871
+            - uses: cachix/install-nix-action@3dc140bfc76c49fbd4dd958429132e3746bcb086
               with:
                   extra_nix_config: experimental-features = nix-command flakes
             - run: |
@@ -36,21 +36,11 @@ jobs:
                   # mark failed if any image failed (but commit the rest)
                   [ -z "${failed:-}" ] || exit 1
 
-            - name: prune untagged images older than 14 days
+            - name: cleanup old images
               if: ${{ !cancelled() }}
-              env:
-                  GH_TOKEN: ${{ github.token }}
-              run: |
-                  set -uo pipefail
-                  base=$(gh api "users/$GITHUB_REPOSITORY_OWNER" --jq 'if .type == "Organization" then "orgs" else "users" end')/$GITHUB_REPOSITORY_OWNER
-                  gh api --paginate "$base/packages?package_type=container" \
-                    --jq ".[] | select(.repository.full_name == \"$GITHUB_REPOSITORY\") | .name | @uri" |
-                  while read -r pkg; do
-                    # skip currently tagged images
-                    gh api --paginate "$base/packages/container/$pkg/versions" \
-                      --jq '.[] | select(.metadata.container.tags == [] and (.created_at | fromdate) < now - 14*86400) | .id' |
-                    while read -r id; do
-                      echo "deleting $pkg version $id"
-                      gh api -X DELETE "$base/packages/container/$pkg/versions/$id" || echo "::warning::failed to delete $pkg $id"
-                    done
-                  done
+              uses: dataaxiom/ghcr-cleanup-action@ac45a8c04b1eb4b27974ca79a0a74f344c93664b
+              with:
+                  packages: bootc-image-prefetcher/fedora-bootc
+                  delete-untagged: true
+                  older-than: 14 days
+                  dry-run: true
