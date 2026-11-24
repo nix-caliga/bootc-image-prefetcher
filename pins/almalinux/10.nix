@@ -1,7 +1,7 @@
 {
   imageName = "quay.io/almalinuxorg/almalinux-bootc";
-  imageDigest = "sha256:6e00fd0ff19e29f132045c75bffad11972ac4000342006d00aedf02554ce8cb2";
-  hash = "sha256-r/HsBFyDaNY0ZangpWCm7PPQC5LYwyxqbig45ACcjkQ=";
+  imageDigest = "sha256:25d073558afa301299578b1c7ed6e100555ea361bd31a834e2b3a5772dc0add5";
+  hash = "sha256-Gzz6q+SinGeciUGMs8VW9ashC/xTNu1OvBMbsk21O+0=";
   finalImageName = "quay.io/almalinuxorg/almalinux-bootc";
   finalImageTag = "10";
 }
