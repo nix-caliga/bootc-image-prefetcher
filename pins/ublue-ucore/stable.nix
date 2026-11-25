@@ -1,7 +1,7 @@
 {
   imageName = "ghcr.io/ublue-os/ucore";
-  imageDigest = "sha256:fb623d5a54c8861bc0248580c4cf796fe4c80f5046922f43b1a9a4d79b159600";
-  hash = "sha256-AI67wVbrIx/cx5iuMh5qJq8oGljaKW8YPMDSzoA4S6M=";
+  imageDigest = "sha256:a3e3794b4b38ad4cc4d088181d8118e917cc0699246160d91e588df6e5ffcad1";
+  hash = "sha256-kaNsJjR7QEYOyrP2uvxwTpArNIVS4foX+HVdkvgMaFo=";
   finalImageName = "ghcr.io/ublue-os/ucore";
   finalImageTag = "stable";
 }
