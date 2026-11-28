@@ -1,7 +1,7 @@
 {
   imageName = "ghcr.io/nix-caliga/bootc-image-prefetcher/fedora-bootc";
-  imageDigest = "sha256:95b6da999826b973bf3da7cd9e1d3b2abcd2c136e3e9bb67d9b7c0b946fe3a96";
-  hash = "sha256-PgnSWdV1+mzWpyt7LCYcbMXZOfzIX3zFa7FF7N5gGPk=";
+  imageDigest = "sha256:33dee5e6e686b0ce5e7e51dd1f6d7508f17618d30e54bfef0984bfc7d3a0c292";
+  hash = "sha256-Bi6heo8xNPucGtyU2AnGH/kEzWDQRENYdKDPdk59X3k=";
   finalImageName = "quay.io/fedora/fedora-bootc";
   finalImageTag = "44";
 }
